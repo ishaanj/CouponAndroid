@@ -18,10 +18,14 @@ public class CouponDB extends SQLiteOpenHelper {
     // Main table which contains coupon data
     public static final String TABLE_COUPONS = "COUPONS";
     public static final String COL_ID = "_ID";
+    public static final String COL_COUPON_VENDER_ID = "C_VEND_ID";
     public static final String COL_COUPON_NAME = "C_NAME";
     public static final String COL_COUPON_IMG = "C_IMG";
+    public static final String COL_COUPON_HEADER = "C_HEADER";
     public static final String COL_COUPON_TEXT1 = "C_TEXT_1";
     public static final String COL_COUPON_TEXT2 = "C_TEXT_2";
+    public static final String COL_COUPON_TEXT3 = "C_TEXT_3";
+    public static final String COL_COUPON_TEXT4 = "C_TEXT_4";
 
     // Some constants for the database
     private static final String DB_NAME = "CouponDB.db";
@@ -29,10 +33,14 @@ public class CouponDB extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_COUPONS = "CREATE TABLE " + TABLE_COUPONS + "(" +
                                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                COL_COUPON_NAME + " TEXT, " +
-                                COL_COUPON_IMG + " BLOB, " +
-                                COL_COUPON_TEXT1 + " TEXT, " +
-                                COL_COUPON_TEXT2 + " TEXT);";
+                                COL_COUPON_VENDER_ID + " INTEGER, " +
+                                COL_COUPON_NAME + " TEXT NULL, " +
+                                COL_COUPON_HEADER + " TEXT NULL, " +
+                                COL_COUPON_IMG + " BLOB NULL, " +
+                                COL_COUPON_TEXT1 + " TEXT NULL, " +
+                                COL_COUPON_TEXT2 + " TEXT NULL, " +
+                                COL_COUPON_TEXT3 + " TEXT NULL, " +
+                                COL_COUPON_TEXT4 + " TEXT NULL);";
 
     public CouponDB(Context context) {
         super(context, DB_NAME, null, VERSION);
