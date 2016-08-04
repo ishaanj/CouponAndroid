@@ -18,6 +18,7 @@ public class CouponDB extends SQLiteOpenHelper {
     // Main table which contains coupon data
     public static final String TABLE_COUPONS = "COUPONS";
     public static final String COL_ID = "_ID";
+    public static final String COL_COUPON_TYPE = "C_TYPE";
     public static final String COL_COUPON_VENDER_ID = "C_VEND_ID";
     public static final String COL_COUPON_NAME = "C_NAME";
     public static final String COL_COUPON_IMG = "C_IMG";
@@ -33,6 +34,7 @@ public class CouponDB extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_COUPONS = "CREATE TABLE " + TABLE_COUPONS + "(" +
                                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                COL_COUPON_TYPE + " INTEGER, " +
                                 COL_COUPON_VENDER_ID + " INTEGER, " +
                                 COL_COUPON_NAME + " TEXT NULL, " +
                                 COL_COUPON_HEADER + " TEXT NULL, " +
