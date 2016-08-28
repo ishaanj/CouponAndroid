@@ -4,16 +4,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_account_circle_black_24dp"
-            android:title="Profile" />
+            android:icon="@drawable/ic_view_day_black_24dp"
+            android:title="All Offers" />
         <item
             android:id="@+id/nav_vault"
+            android:icon="@drawable/ic_touch_app_black_24dp"
+            android:title="Earn Points" />
+        <item
+            android:id="@+id/nav_qp"
             android:icon="@drawable/ic_lock_black_24dp"
             android:title="Vault" />
         <item
-            android:id="@+id/nav_qp"
-            android:icon="@drawable/ic_touch_app_black_24dp"
-            android:title="Quick Points" />
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help_outline_black_24dp"
+            android:title="Help and Settings" />
     </group>
 
 </menu>

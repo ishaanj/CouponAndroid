@@ -3,6 +3,9 @@ package com.hzs.couponandroid;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +16,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NaviPageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private List<Offer> offers;
+    private RecyclerView recyclerView;
+    private OfferAdapter offerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,19 @@ public class NaviPageActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        recyclerView = (RecyclerView) this.findViewById(R.id.offer_rec);
+        offers = new ArrayList<>();
+
+        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
+        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
+        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
+        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
+        offerAdapter = new OfferAdapter(offers);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(offerAdapter);
+        offerAdapter.notifyDataSetChanged();
     }
 
     @Override
