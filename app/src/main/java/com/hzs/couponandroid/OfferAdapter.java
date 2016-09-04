@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -14,12 +15,15 @@ import java.util.List;
 public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MyViewHolder> {
 
     private List<Offer> offersList;
+    private int color;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView exp, text, from, points, type;
+        public RelativeLayout rel;
 
         public MyViewHolder(View view) {
             super(view);
+            rel = (RelativeLayout) view.findViewById(R.id.card_rel_view);
             from = (TextView) view.findViewById(R.id.offer_by);
             text = (TextView) view.findViewById(R.id.offer_text);
             exp = (TextView) view.findViewById(R.id.offer_exp);
@@ -28,8 +32,9 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MyViewHolder
         }
     }
 
-    public OfferAdapter(List<Offer> offers) {
+    public OfferAdapter(List<Offer> offers, int color) {
         this.offersList = offers;
+        this.color = color;
     }
 
     @Override
@@ -43,6 +48,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Offer offer = offersList.get(position);
+        holder.rel.setBackgroundColor(color);
         holder.from.setText(offer.getFrom());
         holder.text.setText(offer.getText());
         holder.exp.setText(offer.getExp());
