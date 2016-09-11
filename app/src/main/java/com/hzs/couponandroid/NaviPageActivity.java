@@ -24,6 +24,7 @@ import android.widget.SearchView;
 import com.hzs.couponandroid.fragments.AllOffersFragment;
 import com.hzs.couponandroid.fragments.EarnPointsFragment;
 import com.hzs.couponandroid.fragments.VaultFragment;
+import com.hzs.couponandroid.persistence.PersistentViews;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,7 @@ public class NaviPageActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        PersistentViews.fab = fab;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,6 +69,26 @@ public class NaviPageActivity extends AppCompatActivity
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 1)
+                    PersistentViews.fab.setVisibility(View.GONE);
+                else
+                    PersistentViews.fab.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         //setupTabIcons();
     }
 

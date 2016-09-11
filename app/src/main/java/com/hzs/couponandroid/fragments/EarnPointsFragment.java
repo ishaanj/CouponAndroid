@@ -1,28 +1,24 @@
 package com.hzs.couponandroid.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.hzs.couponandroid.Offer;
-import com.hzs.couponandroid.OfferAdapter;
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.hzs.couponandroid.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Ishaan 2 on 9/4/2016.
  */
 public class EarnPointsFragment extends Fragment {
 
-    private List<Offer> offers;
-    private RecyclerView recyclerView;
-    private OfferAdapter offerAdapter;
+    private ImageView pointView, mainImage;
 
     public EarnPointsFragment() {
         // Required empty public constructor
@@ -41,19 +37,34 @@ public class EarnPointsFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = (RecyclerView) view.findViewById(R.id.offer_rec);
-        offers = new ArrayList<>();
 
-        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
-        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
-        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
-        offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
-        offerAdapter = new OfferAdapter(offers, R.color.earnPtsColor);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(offerAdapter);
-        offerAdapter.notifyDataSetChanged();
+        pointView = (ImageView) view.findViewById(R.id.point_view);
+        mainImage = (ImageView) view.findViewById(R.id.main_image_view);
+
+        TextDrawable td = TextDrawable.builder().buildRound("100", getActivity().getResources().getColor(R.color.matRed));
+        pointView.setImageDrawable(td);
+
+        mainImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadPhoto(getActivity(), mainImage);
+            }
+        });
+    }
+
+    private void loadPhoto(Activity activity, ImageView imageView) {
+
+        AlertDialog.Builder imageDialog = new AlertDialog.Builder(activity);
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View layout = inflater.inflate(R.layout.custom_fullimg_dialog,
+                (ViewGroup) activity.findViewById(R.id.layout_root));
+        ImageView image = (ImageView) layout.findViewById(R.id.fullimage);
+        image.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
+        imageDialog.setView(layout);
+        imageDialog.create();
+        imageDialog.show();
     }
 }
