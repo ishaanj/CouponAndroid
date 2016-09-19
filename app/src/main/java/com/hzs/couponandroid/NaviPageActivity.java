@@ -1,5 +1,6 @@
 package com.hzs.couponandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import com.hzs.couponandroid.fragments.AllOffersFragment;
@@ -63,6 +65,14 @@ public class NaviPageActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profileIntent = new Intent(NaviPageActivity.this, ProfileActivity.class);
+                startActivity(profileIntent);
+            }
+        });
 
         viewPager = (ViewPager) findViewById(R.id.main_pager);
         setupViewPager(viewPager);

@@ -22,7 +22,19 @@
             android:name=".database.CouponProvider"
             android:authorities="com.hzs.couponandroid.database"
             android:enabled="true"
-            android:exported="false"></provider>
+            android:exported="false" />
+
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/MyMaterialTheme"
+            android:parentActivityName=".NaviPageActivity"
+            >
+
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

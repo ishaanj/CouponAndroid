@@ -50,7 +50,7 @@ public class VaultFragment extends Fragment {
         offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
         offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
         offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
-        offerAdapter = new OfferAdapter(offers, R.color.vaultColor);
+        offerAdapter = new OfferAdapter(getActivity(), offers, R.color.vaultColor);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(offerAdapter);
