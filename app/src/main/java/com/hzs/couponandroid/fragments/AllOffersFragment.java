@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class AllOffersFragment extends Fragment {
 
+    private RecyclerView.LayoutManager mLayoutManager;
     private List<Offer> offers;
     private RecyclerView recyclerView;
     private OfferAdapter offerAdapter;
@@ -50,8 +51,9 @@ public class AllOffersFragment extends Fragment {
         offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
         offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
         offers.add(new Offer("Test company", "Hi there, I'm the first offer", "Survey", "30 days", "100 points"));
-        offerAdapter = new OfferAdapter(offers, R.color.allOffColor);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        offerAdapter = new OfferAdapter(getActivity(), offers, R.color.allOffColor);
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(offerAdapter);
         offerAdapter.notifyDataSetChanged();

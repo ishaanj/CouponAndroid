@@ -1,5 +1,6 @@
 package com.hzs.couponandroid;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MyViewHolder> {
 
+    private LayoutInflater inflater;
     private List<Offer> offersList;
     private int color;
 
@@ -32,15 +34,17 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MyViewHolder
         }
     }
 
-    public OfferAdapter(List<Offer> offers, int color) {
+    public OfferAdapter(Context context, List<Offer> offers, int color) {
         this.offersList = offers;
         this.color = color;
+
+        if (inflater == null)
+            inflater = LayoutInflater.from(context);
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.offer_rec_view, parent, false);
+        View itemView = inflater.inflate(R.layout.offer_rec_view, parent, false);
 
         return new MyViewHolder(itemView);
     }
