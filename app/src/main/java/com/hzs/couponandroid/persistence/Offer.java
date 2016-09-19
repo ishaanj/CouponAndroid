@@ -1,4 +1,4 @@
-package com.hzs.couponandroid;
+package com.hzs.couponandroid.persistence;
 
 /**
  * Created by Ishaan 2 on 8/28/2016.

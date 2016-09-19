@@ -1,4 +1,4 @@
-package com.hzs.couponandroid;
+package com.hzs.couponandroid.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.hzs.couponandroid.R;
+import com.hzs.couponandroid.persistence.Offer;
 
 import java.util.List;
 

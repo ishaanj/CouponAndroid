@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hzs.couponandroid.Offer;
-import com.hzs.couponandroid.OfferAdapter;
+import com.hzs.couponandroid.persistence.Offer;
+import com.hzs.couponandroid.adapters.OfferAdapter;
 import com.hzs.couponandroid.R;
 
 import java.util.ArrayList;
