@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
 
 android {
     compileSdkVersion 24
@@ -19,6 +20,57 @@ android {
     }
 }
 
+android {
+    sourceSets {
+        main {
+            proto {
+                srcDir 'src/main/proto'
+            }
+            java {
+                srcDir 'src/main/java'
+            }
+        }
+        test {
+            proto {
+                srcDir 'src/test/proto'
+            }
+            proto {
+                srcDir 'src/test/java'
+            }
+        }
+    }
+}
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+
+    generatedFilesBaseDir = "$projectDir/src/generated"
+
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0'
+        }
+        javalite {
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            javalite { }
+        }
+        ofNonTest()*.plugins {
+            grpc {
+                // Options added to --grpc_out
+                option 'lite'
+            }
+        }
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.1.1'
@@ -27,4 +79,14 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.1.1'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile 'io.grpc:grpc-core:1.0.0-pre2'
+    compile 'io.grpc:grpc-stub:1.0.0-pre2'
+    compile 'io.grpc:grpc-okhttp:1.0.0-pre2'
+    compile('io.grpc:grpc-protobuf-lite:1.0.0-pre2') {
+        exclude module: "protobuf-lite"
+    }
+
+    compile 'com.google.protobuf:protobuf-lite:3.0.0'
+
 }

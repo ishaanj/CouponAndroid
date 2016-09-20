@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "com.hzs.couponandroid";
+option java_outer_classname = "ProfileProto";
+
+message Profile {
+    string name = 1;
+    string imgUri = 2;
+
+    map<string, bool> choices = 3;
+}
